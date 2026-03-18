@@ -19,6 +19,6 @@ from django.urls import include, path
 
 # Endpoints do projeto, isto é, os endpoints que são acessíveis a partir do endereço base do projeto, como por exemplo "/admin/"" ou "/blog/welcome/""
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls')),
+    path("admin/", admin.site.urls),
+    path("blog/", include("blog.urls")),
 ]
