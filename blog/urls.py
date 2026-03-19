@@ -13,7 +13,7 @@ urlpatterns = [
     path("info/", views.info),
 
     # Endpoint para trabalhar com context/templates
-    path("main/", views.context, name="main"),
+    path("index/", views.index, name="main"),
 
     # Endpoints para redirecionar para páginas home e contact
     path("home/", views.home, name="home"),

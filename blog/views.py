@@ -18,8 +18,8 @@ def info(request):
     return JsonResponse(json)
 
 # Contexto que será passado para o template
-def context(request):
-    context = {
+def index(request):
+    index = {
         "username": "Cartaxo",
         "current_date": datetime.now().strftime('%d/%m/%Y'),
         "is_logged_in": True,
@@ -34,14 +34,15 @@ def context(request):
         ],
     }
 
-    return render(request, "blog/index.html", context)
+    return render(request, "blog/index.html", index)
 
 # View que irá redirecionar para a página home.html
 def home(request):
     context = {
         "username": "Maria",
-        "current_date": datetime.now().strftime('%d%m/%Y'),
+        "current_date": datetime.now().strftime('%d/%m/%Y'),
         "page_title": "Página Inicial",
+        "current_year": datetime.now().year,
     }
     return render(request, "blog/home.html", context)
     
