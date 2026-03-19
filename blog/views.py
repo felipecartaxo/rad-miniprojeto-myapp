@@ -1,6 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from datetime import date
+from datetime import datetime
 
 # Create your views here.
 def welcome(request):
@@ -21,7 +21,7 @@ def info(request):
 def context(request):
     context = {
         "username": "Cartaxo",
-        "current_date": date.today().strftime('%d/%m/%Y'),
+        "current_date": datetime.now(),
 
     }
 
