@@ -22,7 +22,11 @@ def context(request):
     context = {
         "username": "Cartaxo",
         "current_date": datetime.now().strftime('%d/%m/%Y'),
-
+        "is_logged_in": True,
+        "roles" : [
+            'admin',
+            'user'
+        ],
     }
 
     return render(request, "blog/index.html", context)

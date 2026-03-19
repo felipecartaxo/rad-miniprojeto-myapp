@@ -9,6 +9,14 @@
 
     <!-- 1) Variáveis no template -->
     <h1>Olá, {{ username }}, a data atual é {{ current_date }}.</h1>
+
+    <!-- 2) Condicionais -->
+    {% if is_logged_in %}
+    <h2>Bem vindo de volta!</h2>
+    {% else %}
+    <h2>Faça login para continuar.</h2>
+    {% endif %}
+    <hr>
     
 </body>
 </html>
