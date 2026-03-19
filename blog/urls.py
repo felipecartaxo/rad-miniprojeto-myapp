@@ -10,5 +10,9 @@ urlpatterns = [
     path("eco/<str:text>/", views.eco),
 
     # Endpoint que retorna o json
-    path("info/", views.info)
+    path("info/", views.info),
+
+    # Endpoint para trabalhar com context/templates
+    path("context/", views.context),
+
 ]
