@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Index</title>
 
-    <!-- Css para exibir a tabela de um jeito mais agradável -->
+    <!-- Formata a tabela de um jeito mais agradável -->
      <style>
         table {
             border-collapse: collapse;
@@ -47,6 +47,25 @@
         tfoot td {
             font-weight: bold;
         }
+
+        /* Centraliza e empilha os links */
+        .link-stack {
+            /* text-align: center; */
+            margin-top: 16px;
+        }
+
+        .link-stack a {
+            display: block;
+            margin: 6px 0;
+            text-decoration: none;
+            color: blue;
+            font-size: 24px;
+        }
+
+        .link-stack a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -80,6 +99,11 @@
             {% endfor %}
         </tbody>
     </table>
-    
+
+    <!-- 4) URLs -->
+    <div class="link-stack">
+        <a href="{% url 'home' %}">Página Inicial</a>
+        <a href="{% url 'contact' phone_number='83 988776655' %}">Contato</a>
+    </div>
 </body>
 </html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <style>
+        .link-stack {
+            margin-top: 16px;
+        }
+
+        .link-stack a {
+            display: block;
+            margin: 6px 0;
+            text-decoration: none;
+            color: blue;
+            font-size: 24px;
+        }
+
+        .link-stack a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bem vindo à {{ page_title }}, {{ username }}!</h1>
+        
+    <h1>A data atual é {{ current_date }} e agradecemos pela preferência :D</h1>
+
+    <div class="link-stack">
+        <a href="{% url 'main' %}">Voltar para a página principal</a>
+    </div>
+    
+</body>
+</html>

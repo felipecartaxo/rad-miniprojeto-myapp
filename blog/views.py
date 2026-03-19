@@ -35,3 +35,19 @@ def context(request):
     }
 
     return render(request, "blog/index.html", context)
+
+# View que irá redirecionar para a página home.html
+def home(request):
+    context = {
+        "username": "Maria",
+        "current_date": datetime.now().strftime('%d%m/%Y'),
+        "page_title": "Página Inicial",
+    }
+    return render(request, "blog/home.html", context)
+    
+# View que irá redirecionar para a página contact.html e receberá um parâmetro de número de telefone
+def contact(request, phone_number):
+    context = {
+        "phone_number": phone_number
+    }
+    return render(request, "blog/contact.html", context)
