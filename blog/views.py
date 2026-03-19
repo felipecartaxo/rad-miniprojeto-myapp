@@ -21,7 +21,7 @@ def info(request):
 def context(request):
     context = {
         "username": "Cartaxo",
-        "current_date": datetime.now(),
+        "current_date": datetime.now().strftime('%d/%m/%Y'),
 
     }
 
