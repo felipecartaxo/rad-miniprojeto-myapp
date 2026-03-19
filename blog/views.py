@@ -27,6 +27,11 @@ def context(request):
             'admin',
             'user'
         ],
+        "products": [
+            {"name": "Caneca", "price": 19.90},
+            {"name": "Camiseta", "price": 39.90},
+            {"name": "Adesivo", "price": 4.50},
+        ],
     }
 
     return render(request, "blog/index.html", context)
