@@ -14,7 +14,7 @@ def home(request):
 # ---------------------------
 def autor_list(request):
     autores = Autor.objects.all().order_by("nome")
-    return render(request, "edu/home.html", {"autores": autores})
+    return render(request, "edu/autor/list.html", {"autores": autores})
 
 
 def autor_create(request):
