@@ -1,0 +1,11 @@
+{% extends "edu/base.html" %}
+{% block title %}{{ titulo }}{% endblock %}
+{% block content %}
+<h2>{{ titulo }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+    <a class="btn" href="{% url 'autor_list' %}">Cancelar</a>
+</form>
+{% endblock %}

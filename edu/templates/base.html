@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Edu CRUD{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; }
+        nav a { margin-right: 10px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        .btn { display: inline-block; padding: 6px 10px; border: 1px solid #333; text-decoration: none; margin-right: 6px; }
+        .messages { list-style: none; padding: 0; }
+        .messages li { background: #e7f3ff; padding: 8px; margin-bottom: 6px; border: 1px solid #b3d8ff; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'edu_home' %}">Início</a>
+        <a href="{% url 'autor_list' %}">Autores</a>
+        <a href="{% url 'editora_list' %}">Editoras</a>
+        <a href="{% url 'livro_list' %}">Livros</a>
+        <a href="{% url 'publica_list' %}">Publicações</a>
+    </nav>
+    <hr />
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+</body>
+</html>

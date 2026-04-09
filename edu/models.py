@@ -31,12 +31,14 @@ class Livro(models.Model):
         return f'{self.titulo} - {self.isbn} - {self.preco} - {self.estoque} - {self.publicacao}'
 
 class Publica(models.Model):
-    # Relacionamento N:N entre Livro e Autor, onde um livro pode ter vários autores e um autor pode escrever vários livros
+    id = models.AutoField(primary_key=True)
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
 
-    # Similar ao Java, onde usamos @ManyToMany(mappedBy = "livros") para criar a relação muitos para muitos entre Livro e Autor
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['livro', 'autor'], name='unique_livro_autor')
         ]
+
+    def __str__(self):
+        return f"{self.livro.titulo} - {self.autor.nome}"
