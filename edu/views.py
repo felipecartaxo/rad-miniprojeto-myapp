@@ -91,7 +91,7 @@ def editora_delete(request, pk):
 # Listagem com paginação de livros
 def livro_list(request):
     livros_qs = Livro.objects.select_related("editora").all().order_by("titulo")
-    paginator = Paginator(livros_qs, 3)  # 3 livros por página (mas será alterado após mais dados serem populados com o Faker)
+    paginator = Paginator(livros_qs, 10)  # livros por página
     page_number = request.GET.get("page")
     livros = paginator.get_page(page_number)
     return render(request, "edu/livro/list.html", {"livros": livros})
