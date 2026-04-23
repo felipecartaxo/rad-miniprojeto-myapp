@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 from .models import Autor, Editora, Livro, Publica
 from .forms import AutorForm, EditoraForm, LivroForm, PublicaForm
@@ -7,7 +8,6 @@ from .forms import AutorForm, EditoraForm, LivroForm, PublicaForm
 
 def home(request):
     return render(request, "edu/home.html")
-
 
 # ---------------------------
 # CRUD Autor
@@ -84,8 +84,16 @@ def editora_delete(request, pk):
 # ---------------------------
 # CRUD Livro
 # ---------------------------
+# def livro_list(request):
+#     livros = Livro.objects.select_related("editora").all().order_by("titulo")
+#     return render(request, "edu/livro/list.html", {"livros": livros})
+
+# Listagem com paginação de livros
 def livro_list(request):
-    livros = Livro.objects.select_related("editora").all().order_by("titulo")
+    livros_qs = Livro.objects.select_related("editora").all().order_by("titulo")
+    paginator = Paginator(livros_qs, 3)  # 3 livros por página (mas será alterado após mais dados serem populados com o Faker)
+    page_number = request.GET.get("page")
+    livros = paginator.get_page(page_number)
     return render(request, "edu/livro/list.html", {"livros": livros})
 
 

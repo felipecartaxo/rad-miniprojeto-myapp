@@ -37,4 +37,20 @@
     {% endfor %}
     </tbody>
 </table>
+
+{% if livros.paginator.num_pages > 1 %}
+<div style="margin-top: 12px;">
+    {% if livros.has_previous %}
+        <a class="btn" href="?page=1">Primeira</a>
+        <a class="btn" href="?page={{ livros.previous_page_number }}">Anterior</a>
+    {% endif %}
+
+    <span>Página {{ livros.number }} de {{ livros.paginator.num_pages }}</span>
+
+    {% if livros.has_next %}
+        <a class="btn" href="?page={{ livros.next_page_number }}">Próxima</a>
+        <a class="btn" href="?page={{ livros.paginator.num_pages }}">Última</a>
+    {% endif %}
+</div>
+{% endif %}
 {% endblock %}
