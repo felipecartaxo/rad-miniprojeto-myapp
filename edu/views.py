@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 from .models import Autor, Editora, Livro, Publica
 from .forms import AutorForm, EditoraForm, LivroForm, PublicaForm
@@ -97,6 +101,7 @@ def livro_list(request):
     return render(request, "edu/livro/list.html", {"livros": livros})
 
 
+@login_required
 def livro_create(request):
     form = LivroForm(request.POST or None)
     if request.method == "POST" and form.is_valid():
@@ -105,7 +110,7 @@ def livro_create(request):
         return redirect("livro_list")
     return render(request, "edu/livro/form.html", {"form": form, "titulo": "Novo Livro"})
 
-
+@login_required
 def livro_update(request, pk):
     livro = get_object_or_404(Livro, pk=pk)
     form = LivroForm(request.POST or None, instance=livro)
@@ -159,3 +164,12 @@ def publica_delete(request, pk):
         messages.success(request, "Vínculo livro-autor removido com sucesso.")
         return redirect("publica_list")
     return render(request, "edu/publica/confirm_delete.html", {"obj": publica})
+
+# Login
+def signup(request):
+    form = UserCreationForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        user = form.save()
+        login(request, user)
+        return redirect("edu_home")
+    return render(request, "registration/signup.html", {"form": form})
