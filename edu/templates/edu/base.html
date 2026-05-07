@@ -23,6 +23,7 @@
         <a href="{% url 'publica_list' %}">Publicações</a>
     
         {% if user.is_authenticated %}
+            <span>Olá, {{ user.username }}</span>
             <a href="{% url 'logout' %}">Sair</a>
         {% else %}
             <a href="{% url 'login' %}">Entrar</a>
