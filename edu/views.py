@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
@@ -101,7 +101,36 @@ def livro_list(request):
     return render(request, "edu/livro/list.html", {"livros": livros})
 
 
+# @login_required
+# def livro_create(request):
+#     form = LivroForm(request.POST or None)
+#     if request.method == "POST" and form.is_valid():
+#         form.save()
+#         messages.success(request, "Livro cadastrado com sucesso.")
+#         return redirect("livro_list")
+#     return render(request, "edu/livro/form.html", {"form": form, "titulo": "Novo Livro"})
+
+# @login_required
+# def livro_update(request, pk):
+#     livro = get_object_or_404(Livro, pk=pk)
+#     form = LivroForm(request.POST or None, instance=livro)
+#     if request.method == "POST" and form.is_valid():
+#         form.save()
+#         messages.success(request, "Livro atualizado com sucesso.")
+#         return redirect("livro_list")
+#     return render(request, "edu/livro/form.html", {"form": form, "titulo": "Editar Livro"})
+
+
+# def livro_delete(request, pk):
+#     livro = get_object_or_404(Livro, pk=pk)
+#     if request.method == "POST":
+#         livro.delete()
+#         messages.success(request, "Livro removido com sucesso.")
+#         return redirect("livro_list")
+#     return render(request, "edu/livro/confirm_delete.html", {"obj": livro})
+
 @login_required
+@permission_required("edu.add_livro", raise_exception=True)
 def livro_create(request):
     form = LivroForm(request.POST or None)
     if request.method == "POST" and form.is_valid():
@@ -110,7 +139,9 @@ def livro_create(request):
         return redirect("livro_list")
     return render(request, "edu/livro/form.html", {"form": form, "titulo": "Novo Livro"})
 
+
 @login_required
+@permission_required("edu.change_livro", raise_exception=True)
 def livro_update(request, pk):
     livro = get_object_or_404(Livro, pk=pk)
     form = LivroForm(request.POST or None, instance=livro)
@@ -121,6 +152,8 @@ def livro_update(request, pk):
     return render(request, "edu/livro/form.html", {"form": form, "titulo": "Editar Livro"})
 
 
+@login_required
+@permission_required("edu.delete_livro", raise_exception=True)
 def livro_delete(request, pk):
     livro = get_object_or_404(Livro, pk=pk)
     if request.method == "POST":
